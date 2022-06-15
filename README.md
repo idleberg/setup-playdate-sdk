@@ -1,0 +1,39 @@
+# setup-playdate-sdk
+
+> A GitHub action that installs the Playdate SDK.
+
+## Usage
+
+Configure a step that adds the `idleberg/setup-playdate-sdk` action to your workflow. Optionally, you can pass the following parameters via `with`
+
+See [`test.yml`](https://github.com/idleberg/setup-playdate-sdk/blob/main/.github/workflows/test.yml) for an example.
+
+### Options
+
+#### install_sdk
+
+Default: `true`
+
+Install Playdate SDK if true
+
+#### sdk_version
+
+Default: `latest`
+
+Specify the version of the SDK
+
+#### set_env_var
+
+Default: `true`
+
+Set `PLAYDATE_SDK_PATH` environment variable
+
+#### update_path
+
+Default: `true`
+
+Update environment variable PATH for workflow if true
+
+## License
+
+This work is licensed under [The MIT License](LICENSE).
