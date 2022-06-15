@@ -16,11 +16,11 @@ Configure a step that adds the `idleberg/setup-playdate-sdk` action to your work
 jobs:
   steps:
     - uses: idleberg/setup-playdate-sdk@v0.1.0
-        with: # the following options use the defaults
-          install_sdk: 'true'
-          sdk_version: 'latest'
-          set_env_var: 'true'
-          update_path: 'true'
+      with: # the following options use the defaults
+        install_sdk: 'true'
+        sdk_version: 'latest'
+        set_env_var: 'true'
+        update_path: 'true'
 ```
 
 See [`test.yml`](https://github.com/idleberg/setup-playdate-sdk/blob/main/.github/workflows/test.yml) for a real world action.
