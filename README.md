@@ -23,7 +23,7 @@ jobs:
         update_path: 'true'
 ```
 
-See [`test.yml`](https://github.com/idleberg/setup-playdate-sdk/blob/main/.github/workflows/test.yml) for a real world action.
+See [`test.yml`](https://github.com/idleberg/setup-playdate-sdk/blob/main/.github/workflows/test.yml) for a real-world example.
 
 ### Options
 
