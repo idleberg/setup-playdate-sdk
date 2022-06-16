@@ -2,7 +2,7 @@ name: 'Setup Playdate SDK'
 description: 'Setup the Playdate SDK and expose its build tools'
 branding:
   color: yellow
-  icon: download-cloud
+  icon: loader
 inputs:
   install_sdk:
     description: 'Install Playdate SDK if true (default)'
