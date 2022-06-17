@@ -6,18 +6,15 @@ branding:
 inputs:
   install_sdk:
     description: 'Install Playdate SDK if true (default)'
-    required: true
     default: 'true'
   sdk_version:
     description: 'Specify the version of the SDK (defaults to latest)'
-    required: true
     default: 'latest'
   set_env_var:
     description: 'Set PLAYDATE_SDK_PATH environment variable (default)'
     default: 'true'
   update_path:
     description: 'Update environment variable PATH for workflow if true (default)'
-    required: true
     default: 'true'
 runs:
   using: "composite"
