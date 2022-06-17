@@ -15,7 +15,7 @@ Configure a step that adds the `idleberg/setup-playdate-sdk` action to your work
 ```yaml
 jobs:
   steps:
-    - uses: idleberg/setup-playdate-sdk@v0.1.0
+    - uses: idleberg/setup-playdate-sdk@v0.1.1
       with: # the following options use the defaults
         install_sdk: 'true'
         sdk_version: 'latest'
