@@ -28,12 +28,12 @@ See [`test.yml`](https://github.com/idleberg/setup-playdate-sdk/blob/main/.githu
 
 Every argument is optional.
 
-| Input         | Description                                           | Default  |
-| ------------- | ----------------------------------------------------- | -------- |
-| `install-sdk` | Installs Playdate SDK                                 | `true`   |
-| `sdk-version` | Specifies the version of the SDK                      | `latest` |
-| `set-env-var` | Sets `PLAYDATE_SDK_PATH` environment variable         | `true`   |
-| `update-path` | Update environment variable PATH for workflow if true | `true`   |
+| Input         | Description                                   | Default  |
+| ------------- | ----------------------------------------------| -------- |
+| `install-sdk` | Installs Playdate SDK                         | `true`   |
+| `sdk-version` | Specifies the version of the SDK              | `latest` |
+| `set-env-var` | Sets `PLAYDATE_SDK_PATH` environment variable | `true`   |
+| `update-path` | Updates `PATH` environment variable           | `true`   |
 
 ## License
 
