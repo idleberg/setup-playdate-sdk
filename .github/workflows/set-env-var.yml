@@ -26,12 +26,3 @@ jobs:
 
         echo "PLAYDATE_SDK_PATH is defined"
         exist 1
-
-    - name: Test version match
-      run: |
-        if pdc --version | grep -q '1.11.1'; then
-          exit 0
-        fi
-
-        echo "Version mismatch"
-        exit 1
