@@ -1,0 +1,28 @@
+
+name: update-path
+
+on:
+  push
+
+jobs:
+  test-run:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: idleberg/setup-playdate-sdk@main
+      with:
+        update-path: 'false'
+
+    - name: Test environment variable
+      run: |
+        if pdc --version; then
+          echo "Found pdc in PATH"
+          exit 1
+        fi
+
+        exit 0

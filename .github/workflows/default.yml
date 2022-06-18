@@ -1,0 +1,32 @@
+
+name: default
+
+on:
+  push
+
+jobs:
+  test-run:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: idleberg/setup-playdate-sdk@main
+
+    - name: Test environment variable
+      run: |
+        if [ -z "${PLAYDATE_SDK_PATH}" ]; then
+          echo "PLAYDATE_SDK_PATH is not defined or empty"
+          exit 1
+        fi
+
+        $PLAYDATE_SDK_PATH/bin/pdc --version
+
+    - name: Print version
+      run: pdc --version
+
+    - name: Compile game
+      run: pdc --verbose ${GITHUB_WORKSPACE}/.github/source
