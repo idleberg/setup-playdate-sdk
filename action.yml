@@ -1,8 +1,10 @@
 name: 'Setup Playdate SDK'
 description: 'Setup the Playdate SDK and expose its build tools'
+
 branding:
   color: yellow
   icon: loader
+  
 inputs:
   install_sdk:
     description: 'Install Playdate SDK if true (default)'
@@ -17,6 +19,7 @@ inputs:
     description: 'Update environment variable PATH for workflow if true (default)'
     default: 'true'
 runs:
+
   using: "composite"
   steps:
     - name: 'Setup Playdate SDK'
