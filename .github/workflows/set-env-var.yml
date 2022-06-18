@@ -1,5 +1,5 @@
 
-name: test-version
+name: set-env-var
 
 on:
   push

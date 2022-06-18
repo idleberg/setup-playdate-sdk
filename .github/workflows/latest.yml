@@ -1,5 +1,5 @@
 
-name: test-latest
+name: sdk-version:latest
 
 on:
   push
