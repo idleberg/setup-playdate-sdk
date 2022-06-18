@@ -17,7 +17,7 @@ jobs:
   steps:
     - uses: idleberg/setup-playdate-sdk@v0.2.0
       with: 
-        '1.11.1'
+        sdk-version: '1.11.1'
 ```
 
 See [`test.yml`](https://github.com/idleberg/setup-playdate-sdk/blob/main/.github/workflows/test.yml) for a real-world example.
