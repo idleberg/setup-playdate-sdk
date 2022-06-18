@@ -18,11 +18,11 @@ jobs:
       with:
         set-env-var: 'false'
 
-    - name: Test version match
+    - name: Test environment variable
       run: |
-        if pdc --version | grep -q '1.11.1'; then
+        if [ -z "${PLAYDATE_SDK_PATH}" ]; then
           exit 0
         fi
 
-        echo "Version mismatch"
+        echo "PLAYDATE_SDK_PATH is defined"
         exit 1
