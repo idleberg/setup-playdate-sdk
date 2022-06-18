@@ -18,15 +18,6 @@ jobs:
       with:
         sdk-version: '1.11.1'
 
-    - name: Test environment variable
-      run: |
-        if [ -z "${PLAYDATE_SDK_PATH}" ]; then
-          echo "PLAYDATE_SDK_PATH is not defined or empty"
-          exit 1
-        fi
-
-        $PLAYDATE_SDK_PATH/bin/pdc --version
-
     - name: Test version match
       run: |
         if pdc --version | grep -q '1.11.1'; then
