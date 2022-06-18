@@ -18,8 +18,8 @@ inputs:
   update_path:
     description: 'Update environment variable PATH for workflow if true (default)'
     default: 'true'
-runs:
 
+runs:
   using: "composite"
   steps:
     - name: 'Setup Playdate SDK'
