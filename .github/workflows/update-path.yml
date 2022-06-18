@@ -1,5 +1,5 @@
 
-name: update-path
+name: test:update-path
 
 on:
   push
