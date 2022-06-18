@@ -20,7 +20,7 @@ jobs:
         sdk-version: '1.11.1'
 ```
 
-See [`test.yml`](https://github.com/idleberg/setup-playdate-sdk/blob/main/.github/workflows/test.yml) for a real-world example.
+Also check the [real-world examples](https://github.com/idleberg/setup-playdate-sdk/tree/main/.github/workflows) used for this project.
 
 ## All options
 
