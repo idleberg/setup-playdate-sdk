@@ -8,48 +8,32 @@
 
 ## Usage
 
-Configure a step that adds the `idleberg/setup-playdate-sdk` action to your workflow. Optionally, you can pass the following parameters via `with`
+Configure a step that adds the `idleberg/setup-playdate-sdk` action to your workflow. Optionally, you can pass arguments to the action.
 
 **Example**
 
 ```yaml
 jobs:
   steps:
-    - uses: idleberg/setup-playdate-sdk@v0.1.1
-      with: # the following options use the defaults
-        install_sdk: 'true'
-        sdk_version: 'latest'
-        set_env_var: 'true'
-        update_path: 'true'
+    - uses: idleberg/setup-playdate-sdk@v0.2.0
+      with: 
+        '1.11.1'
 ```
 
 See [`test.yml`](https://github.com/idleberg/setup-playdate-sdk/blob/main/.github/workflows/test.yml) for a real-world example.
 
-### Options
+## All options
 
-#### install_sdk
+### List of input options
 
-Default: `true`
+Every argument is optional.
 
-Install Playdate SDK if true
-
-#### sdk_version
-
-Default: `latest`
-
-Specify the version of the SDK
-
-#### set_env_var
-
-Default: `true`
-
-Set `PLAYDATE_SDK_PATH` environment variable
-
-#### update_path
-
-Default: `true`
-
-Update environment variable PATH for workflow if true
+| Input         | Description                                           | Default  |
+| ------------- | ----------------------------------------------------- | -------- |
+| `install-sdk` | Installs Playdate SDK                                 | `true`   |
+| `sdk-version` | Specifies the version of the SDK                      | `latest` |
+| `set-env-var` | Sets `PLAYDATE_SDK_PATH` environment variable         | `true`   |
+| `update-path` | Update environment variable PATH for workflow if true | `true`   |
 
 ## License
 
