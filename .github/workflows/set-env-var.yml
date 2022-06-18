@@ -16,16 +16,16 @@ jobs:
     - uses: actions/checkout@v2
     - uses: idleberg/setup-playdate-sdk@main
       with:
-        sdk-version: '1.11.1'
+        set-env-var: 'false'
 
     - name: Test environment variable
       run: |
         if [ -z "${PLAYDATE_SDK_PATH}" ]; then
-          echo "PLAYDATE_SDK_PATH is not defined or empty"
-          exit 1
+          exit 0
         fi
 
-        $PLAYDATE_SDK_PATH/bin/pdc --version
+        echo "PLAYDATE_SDK_PATH is defined"
+        exist 1
 
     - name: Test version match
       run: |
