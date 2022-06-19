@@ -20,7 +20,7 @@ jobs:
         sdk-version: '1.11.1'
 ```
 
-Also check the [real-world examples](https://github.com/idleberg/setup-playdate-sdk/tree/main/.github/workflows) used for this project.
+Also check the [real-world examples](https://github.com/idleberg/setup-playdate-sdk/tree/main/.github/workflows) used by this project.
 
 ## All options
 
