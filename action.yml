@@ -24,14 +24,14 @@ runs:
   steps:
     - name: 'Setup Playdate SDK'
       shell: bash
-      if: ${{ inputs.install-sdk == 'true' || inputs.install_sdk == 'true' }}
+      if: ${{ inputs.install-sdk == 'true' }}
       run: |
-        curl -s https://download.panic.com/playdate_sdk/Linux/PlaydateSDK-${{ inputs.sdk-version || inputs.sdk_version }}.tar.gz -L | tar xvzf - -C ${{ runner.temp }}
+        curl -s https://download.panic.com/playdate_sdk/Linux/PlaydateSDK-${{ inputs.sdk-version }}.tar.gz -L | tar xvzf - -C ${{ runner.temp }}
     - name: 'Set PLAYDATE_SDK_PATH environment variable'
       shell: bash
-      if: ${{ inputs.set-env-var == 'true' || inputs.set_env_var == 'true' }}
+      if: ${{ inputs.set-env-var == 'true' }}
       run:  echo "PLAYDATE_SDK_PATH=${{ runner.temp }}/$(ls -t -U ${{ runner.temp }} | grep -m 1 "PlaydateSDK")" >> $GITHUB_ENV
     - name: 'Update PATH'
       shell: bash
-      if: ${{ inputs.update_path == 'true' || inputs.update-path == 'true' }}
+      if: ${{ inputs.update_path == 'true' }}
       run: echo "${{ runner.temp }}/$(ls -t -U ${{ runner.temp }} | grep -m 1 "PlaydateSDK")/bin" >> $GITHUB_PATH
