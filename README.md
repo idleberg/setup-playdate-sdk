@@ -26,7 +26,7 @@ name: Create Release
 
 on:
   push:
-    # this action runs whenever a git tag is pushed
+    # Runs whenever a git tag in SemVer pattern is pushed
     tags:
       - 'v*.*.*'
 
@@ -46,10 +46,10 @@ jobs:
 
       - name: Build Project
         run: |
-          # Compile the project
+          # Compiles the project
           pdc source ${{ env.BUILD_OUTPUT }}.pdx
 
-          # Create an archive, since the build output is a directory
+          # Creates an archive, since the build output is a directory
           zip -r -9 ${{ env.BUILD_OUTPUT }}-${{ github.ref_name }}.zip ${{ env.BUILD_OUTPUT }}.pdx
 
       - name: Create Release
