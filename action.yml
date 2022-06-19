@@ -33,5 +33,5 @@ runs:
       run:  echo "PLAYDATE_SDK_PATH=${{ runner.temp }}/$(ls -t -U ${{ runner.temp }} | grep -m 1 "PlaydateSDK")" >> $GITHUB_ENV
     - name: 'Update PATH'
       shell: bash
-      if: ${{ inputs.update_path == 'true' }}
+      if: ${{ inputs.update-path == 'true' }}
       run: echo "${{ runner.temp }}/$(ls -t -U ${{ runner.temp }} | grep -m 1 "PlaydateSDK")/bin" >> $GITHUB_PATH
