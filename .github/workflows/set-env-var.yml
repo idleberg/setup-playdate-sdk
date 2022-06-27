@@ -1,5 +1,5 @@
 
-name: test:set-env-var
+name: test:set_env_var
 
 on:
   push
@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: idleberg/setup-playdate-sdk@main
       with:
-        set-env-var: 'false'
+        set_env_var: 'false'
 
     - name: Test environment variable
       run: |
