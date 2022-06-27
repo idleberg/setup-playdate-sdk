@@ -11,7 +11,7 @@
 Configure a step that adds the `idleberg/setup-playdate-sdk` action to your workflow. Optionally, you can pass arguments to the action.
 
 ```yaml
-- uses: idleberg/setup-playdate-sdk@v1.0.0
+- uses: idleberg/setup-playdate-sdk@v2.0.0
   with: 
     sdk_version: '1.11.1'
 ```
@@ -42,7 +42,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install SDK
-        uses: idleberg/setup-playdate-sdk@v1.0.0
+        uses: idleberg/setup-playdate-sdk@v2.0.0
 
       - name: Build Project
         run: |
