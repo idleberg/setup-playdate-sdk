@@ -89,6 +89,11 @@ Every argument is optional.
 | `set_env_var` | Sets `PLAYDATE_SDK_PATH` environment variable | `true`   |
 | `update_path` | Updates `PATH` environment variable           | `true`   |
 
+
+## Related
+
+- [create-playdate-release](https://github.com/marketplace/actions/create-playdate-release)
+
 ## License
 
 This work is licensed under [The MIT License](LICENSE).
