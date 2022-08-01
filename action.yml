@@ -26,13 +26,13 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: 'Setup Playdate SDK'
+    - name: 'Setup Playdate SDK (Linux)'
       shell: bash
       if: ${{ inputs.install_sdk == 'true' && startsWith(matrix.os, 'linux') }}
       run: |
         curl -s https://download.panic.com/playdate_sdk/Linux/PlaydateSDK-${{ inputs.sdk_version }}.tar.gz -L | tar xvzf - -C ${{ runner.temp }}
 
-    - name: 'Setup Playdate SDK'
+    - name: 'Setup Playdate SDK (Windows)'
       shell: bash
       if: ${{ inputs.install_sdk == 'true' && startsWith(matrix.os, 'windows') }}
       run: |
