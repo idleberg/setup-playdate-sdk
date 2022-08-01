@@ -28,7 +28,7 @@ runs:
   steps:
     - name: 'Setup Playdate SDK (Linux)'
       shell: bash
-      if: ${{ inputs.install_sdk == 'true' && startsWith(matrix.os, 'linux') }}
+      if: ${{ inputs.install_sdk == 'true' && startsWith(matrix.os, 'ubuntu') }}
       run: |
         curl -s https://download.panic.com/playdate_sdk/Linux/PlaydateSDK-${{ inputs.sdk_version }}.tar.gz -L | tar xvzf - -C ${{ runner.temp }}
 
