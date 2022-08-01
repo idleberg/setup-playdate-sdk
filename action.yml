@@ -9,15 +9,19 @@ inputs:
   install_sdk:
     description: 'Install Playdate SDK if true (default)'
     default: 'true'
+    required: true
   sdk_version:
     description: 'Specify the version of the SDK (defaults to latest)'
     default: 'latest'
+    required: true
   set_env_var:
     description: 'Set PLAYDATE_SDK_PATH environment variable (default)'
     default: 'true'
+    required: true
   update_path:
     description: 'Update environment variable PATH for workflow if true (default)'
     default: 'true'
+    required: true
 
 runs:
   using: "composite"
@@ -27,10 +31,12 @@ runs:
       if: ${{ inputs.install_sdk == 'true' }}
       run: |
         curl -s https://download.panic.com/playdate_sdk/Linux/PlaydateSDK-${{ inputs.sdk_version }}.tar.gz -L | tar xvzf - -C ${{ runner.temp }}
+
     - name: 'Set PLAYDATE_SDK_PATH environment variable'
       shell: bash
       if: ${{ inputs.set_env_var == 'true' }}
       run:  echo "PLAYDATE_SDK_PATH=${{ runner.temp }}/$(ls -t -U ${{ runner.temp }} | grep -m 1 "PlaydateSDK")" >> $GITHUB_ENV
+
     - name: 'Update PATH'
       shell: bash
       if: ${{ inputs.update_path == 'true' }}
