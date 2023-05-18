@@ -2,9 +2,9 @@
 
 > A GitHub action that installs the Playdate SDK.
 
-[![License](https://flat.badgen.net/github/license/idleberg/setup-playdate-sdk)](LICENSE)
-[![Version](https://flat.badgen.net/github/release/idleberg/setup-playdate-sdk)](https://github.com/idleberg/setup-playdate-sdk/releases)
-[![Status](https://flat.badgen.net/github/checks/idleberg/setup-playdate-sdk/?label=build)](https://github.com/idleberg/setup-playdate-sdk/actions)
+[![License](https://img.shields.io/github/license/idleberg/setup-playdate-sdk?style=for-the-badge)](LICENSE)
+[![Version](https://img.shields.io/github/v/release/idleberg/setup-playdate-sdk?style=for-the-badge)]([https://github.com/idleberg/setup-playdate-sdk/releases](https://github.com/idleberg/setup-playdate-sdk/releases))
+[![Build](https://img.shields.io/github/actions/workflow/status/idleberg/setup-playdate-sdk/default.yml?style=for-the-badge)]([https://github.com/idleberg/setup-playdate-sdk/releases](https://github.com/idleberg/setup-playdate-sdk/actions))
 
 ## Usage
 
@@ -85,6 +85,7 @@ Every argument is optional.
 | Input         | Description                                   | Default  |
 | ------------- | ----------------------------------------------| -------- |
 | `install_sdk` | Installs Playdate SDK                         | `true`   |
+| `quiet`       | Quiet mode, suppresses non-error output       | `false`  |
 | `sdk_version` | Specifies the version of the SDK              | `latest` |
 | `set_env_var` | Sets `PLAYDATE_SDK_PATH` environment variable | `true`   |
 | `update_path` | Updates `PATH` environment variable           | `true`   |
