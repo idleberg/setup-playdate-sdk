@@ -1,5 +1,5 @@
 
-name: test:set_env_var
+name: test:set-env-var
 
 on:
   push

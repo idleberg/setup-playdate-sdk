@@ -1,11 +1,11 @@
 
-name: test:default
+name: test:quiet
 
 on:
   push:
     paths:
     - 'action.yml'
-    - '.github/workflows/default.yml'
+    - '.github/workflows/quiet.yml'
   workflow_dispatch:
 
 jobs:
@@ -19,6 +19,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: idleberg/setup-playdate-sdk@main
+      with:
+        quiet: true
 
     - name: Test environment variable
       run: |

@@ -1,8 +1,12 @@
 
-name: test:sdk_version
+name: test:sdk-version
 
 on:
-  push
+  push:
+    paths:
+    - 'action.yml'
+    - '.github/workflows/sdk-version.yml'
+  workflow_dispatch:
 
 jobs:
   test-run:

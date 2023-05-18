@@ -1,8 +1,12 @@
 
-name: test:update_path
+name: test:update-path
 
 on:
-  push
+  push:
+    paths:
+    - 'action.yml'
+    - '.github/workflows/update-path.yml'
+  workflow_dispatch:
 
 jobs:
   test-run:
