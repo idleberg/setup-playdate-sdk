@@ -10,6 +10,10 @@ inputs:
     description: 'Install Playdate SDK if true (default)'
     default: 'true'
     required: true
+  quiet:
+    description: 'Quiet mode, suppresses non-error output'
+    default: 'false'
+    required: false
   sdk_version:
     description: 'Specify the version of the SDK (defaults to latest)'
     default: 'latest'
@@ -30,7 +34,7 @@ runs:
       shell: bash
       if: ${{ inputs.install_sdk == 'true' }}
       run: |
-        curl -s https://download.panic.com/playdate_sdk/Linux/PlaydateSDK-${{ inputs.sdk_version }}.tar.gz -L | tar xvzf - -C ${{ runner.temp }}
+        curl -s https://download.panic.com/playdate_sdk/Linux/PlaydateSDK-${{ inputs.sdk_version }}.tar.gz -L | tar x${{ inputs.quiet == 'true' && '' || 'v' }}zf - -C ${{ runner.temp }}
 
     - name: 'Set PLAYDATE_SDK_PATH environment variable'
       shell: bash
