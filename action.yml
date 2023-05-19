@@ -13,7 +13,7 @@ inputs:
   quiet:
     description: 'Quiet mode, suppresses non-error output'
     default: 'false'
-    required: false
+    required: true
   sdk_version:
     description: 'Specify the version of the SDK (defaults to latest)'
     default: 'latest'
