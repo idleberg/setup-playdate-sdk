@@ -6,10 +6,6 @@ branding:
   icon: loader
 
 inputs:
-  install_sdk:
-    description: 'Install Playdate SDK if true (default)'
-    default: 'true'
-    required: true
   quiet:
     description: 'Quiet mode, suppresses non-error output'
     default: 'false'
@@ -32,7 +28,6 @@ runs:
   steps:
     - name: 'Setup Playdate SDK'
       shell: bash
-      if: ${{ inputs.install_sdk == 'true' }}
       run: |
         curl -s https://download.panic.com/playdate_sdk/Linux/PlaydateSDK-${{ inputs.sdk_version }}.tar.gz -L | tar ${{ inputs.quiet == 'true' && 'xzf' || 'xvzf' }} - -C ${{ runner.temp }}
 

@@ -84,7 +84,6 @@ Every argument is optional.
 
 | Input         | Description                                   | Default  |
 | ------------- | ----------------------------------------------| -------- |
-| `install_sdk` | Installs Playdate SDK                         | `true`   |
 | `quiet`       | Quiet mode, suppresses non-error output       | `false`  |
 | `sdk_version` | Specifies the version of the SDK              | `latest` |
 | `set_env_var` | Sets `PLAYDATE_SDK_PATH` environment variable | `true`   |
