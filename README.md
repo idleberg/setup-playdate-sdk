@@ -11,10 +11,12 @@
 Configure a step that adds the `idleberg/setup-playdate-sdk` action to your workflow. Optionally, you can pass arguments to the action.
 
 ```yaml
-- uses: idleberg/setup-playdate-sdk@v2.1.0
+- uses: idleberg/setup-playdate-sdk@v3.0.0
   with: 
     sdk_version: '1.11.1' # this can usually be omitted in favour of latest version
 ```
+
+:bulb: **Note:** For security reasons it's recommended to use the commit hash of the [release](https://github.com/idleberg/setup-playdate-sdk/releases) as version identifier
 
 One use case for this action is to build your game with the Playdate SDK and attach it to a GitHub release.
 
