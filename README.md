@@ -3,8 +3,8 @@
 > A GitHub action that installs the Playdate SDK.
 
 [![License](https://img.shields.io/github/license/idleberg/setup-playdate-sdk?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/github/v/release/idleberg/setup-playdate-sdk?style=for-the-badge)]([https://github.com/idleberg/setup-playdate-sdk/releases](https://github.com/idleberg/setup-playdate-sdk/releases))
-[![Build](https://img.shields.io/github/actions/workflow/status/idleberg/setup-playdate-sdk/default.yml?style=for-the-badge)]([https://github.com/idleberg/setup-playdate-sdk/releases](https://github.com/idleberg/setup-playdate-sdk/actions))
+[![Version](https://img.shields.io/github/v/release/idleberg/setup-playdate-sdk?style=for-the-badge)](https://github.com/idleberg/setup-playdate-sdk/releases)
+[![Build](https://img.shields.io/github/actions/workflow/status/idleberg/setup-playdate-sdk/default.yml?style=for-the-badge)](https://github.com/idleberg/setup-playdate-sdk/actions)
 
 ## Usage
 
