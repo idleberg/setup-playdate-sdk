@@ -18,7 +18,10 @@ jobs:
           '1.13.6',
 
           # All 2.x minor versions
-          '2.0.0', '2.1.0', '2.2.0', '2.3.0', '2.4.0', '2.5.0', '2.6.0', '2.7.0'
+          '2.0.0', '2.1.0', '2.2.0', '2.3.0', '2.4.0', '2.5.0', '2.6.0', '2.7.0',
+
+          # Latest version
+          'latest'
         ]
 
     runs-on: ${{ matrix.os }}
@@ -31,6 +34,10 @@ jobs:
 
     - name: Test version match
       run: |
+        if [ "${{ matrix.version }}" = "latest" ]; then
+          exit 0
+        fi
+
         if pdc --version | grep -q ${{ matrix.version }}; then
           exit 0
         fi
