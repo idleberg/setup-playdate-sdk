@@ -34,11 +34,11 @@ jobs:
 
     - name: Test version match
       run: |
-        if [ "${{ matrix.version }}" = "latest" ]; then
+        if pdc --version | grep -q ${{ matrix.version }}; then
           exit 0
         fi
 
-        if pdc --version | grep -q ${{ matrix.version }}; then
+        if [ "${{ matrix.version }}" = "latest" ]; then
           exit 0
         fi
 
