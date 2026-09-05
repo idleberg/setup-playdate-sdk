@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  create-release:
+    name: Update major version tag
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - id: major
+        shell: bash
+        run: echo "tag=${GITHUB_REF_NAME%%.*}" >> "$GITHUB_OUTPUT"
+
+      - uses: richardsimko/update-tag@24fe62c216198eb57283429200e63a06f62afe5b # v3.0.0
+        with:
+          tag_name: ${{ steps.major.outputs.tag }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
