@@ -3,7 +3,7 @@ description: 'Setup the Playdate SDK and expose its build tools'
 
 branding:
   color: yellow
-  icon: loader
+  icon: gift
 
 inputs:
   quiet:
