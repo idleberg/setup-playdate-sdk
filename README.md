@@ -92,6 +92,17 @@ Every argument is optional.
 | `set_env_var` | Sets `PLAYDATE_SDK_PATH` environment variable | `true`   |
 | `update_path` | Updates `PATH` environment variable           | `true`   |
 
+### List of outputs
+
+| Output        | Description                    |
+| ------------- | ------------------------------ |
+| `sdk_version` | Resolved SDK version           |
+| `sdk_path`    | SDK installation directory     |
+
+## Notes
+
+Runs on Linux, macOS and Windows. The SDK is installed to `~/PlaydateSDK` and cached between runs, keyed by platform and resolved version.
+
 
 ## Related
 

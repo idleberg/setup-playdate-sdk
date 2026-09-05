@@ -1,5 +1,5 @@
 name: 'Setup Playdate SDK'
-description: 'Setup the Playdate SDK and expose its build tools'
+description: 'Set up the Playdate SDK on Linux, macOS and Windows and expose its build tools'
 
 branding:
   color: yellow
@@ -23,20 +23,104 @@ inputs:
     default: 'true'
     required: true
 
+outputs:
+  sdk_version:
+    description: 'Resolved SDK version'
+    value: ${{ steps.vars.outputs.version }}
+  sdk_path:
+    description: 'SDK installation directory'
+    value: ${{ steps.vars.outputs.sdk_path }}
+
 runs:
   using: "composite"
   steps:
-    - name: 'Setup Playdate SDK'
+    - name: 'Resolve version and paths'
+      id: vars
       shell: bash
+      env:
+        VERSION: ${{ inputs.sdk_version }}
       run: |
-        curl -s https://download.panic.com/playdate_sdk/Linux/PlaydateSDK-${{ inputs.sdk_version }}.tar.gz -L | tar ${{ inputs.quiet == 'true' && 'xzf' || 'xvzf' }} - -C ${{ runner.temp }}
+        set -euo pipefail
+
+        case "${{ runner.os }}" in
+          Linux)   url="https://download.panic.com/playdate_sdk/Linux/PlaydateSDK-$VERSION.tar.gz" ;;
+          macOS)   url="https://download.panic.com/playdate_sdk/PlaydateSDK-$VERSION.zip" ;;
+          Windows) url="https://download.panic.com/playdate_sdk/Windows/PlaydateSDK-$VERSION.exe" ;;
+        esac
+
+        if [ "$VERSION" = latest ]; then
+          # "latest" 302-redirects to the versioned file, which names the current release
+          VERSION=$(curl -fsSI "$url" | sed -nE 's#^[Ll]ocation:.*PlaydateSDK-([0-9][0-9.]*)\..*#\1#p')
+          [ -n "$VERSION" ] || { echo "could not resolve latest SDK version" >&2; exit 1; }
+          echo "resolved latest Playdate SDK version: $VERSION"
+        fi
+
+        {
+          echo "version=$VERSION"
+          echo "url=$url"
+          echo "sdk_path=$HOME/PlaydateSDK"
+          echo "key=playdate-sdk-${{ runner.os }}-$VERSION"
+        } >> "$GITHUB_OUTPUT"
+
+    - name: 'Restore cached SDK'
+      id: cache
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      with:
+        path: ~/PlaydateSDK
+        key: ${{ steps.vars.outputs.key }}
+
+    - name: 'Install Playdate SDK (Linux)'
+      if: steps.cache.outputs.cache-hit != 'true' && runner.os == 'Linux'
+      shell: bash
+      env:
+        URL: ${{ steps.vars.outputs.url }}
+        SDK_PATH: ${{ steps.vars.outputs.sdk_path }}
+        QUIET: ${{ inputs.quiet }}
+      run: |
+        set -euo pipefail
+        mkdir -p "$SDK_PATH"
+        curl -fsSL "$URL" | tar "$([ "$QUIET" = true ] && echo xzf || echo xvzf)" - --strip-components=1 -C "$SDK_PATH"
+
+    # The zip holds a .pkg whose postinstall hardcodes ~/Developer and needs root,
+    # so unpack its payload instead of running the installer
+    - name: 'Install Playdate SDK (macOS)'
+      if: steps.cache.outputs.cache-hit != 'true' && runner.os == 'macOS'
+      shell: bash
+      working-directory: ${{ runner.temp }}
+      env:
+        URL: ${{ steps.vars.outputs.url }}
+        SDK_PATH: ${{ steps.vars.outputs.sdk_path }}
+      run: |
+        set -euo pipefail
+        curl -fsSLo PlaydateSDK.zip "$URL"
+        unzip -q PlaydateSDK.zip PlaydateSDK.pkg
+        pkgutil --expand-full PlaydateSDK.pkg pkg
+        mv pkg/PlaydateSDK.pkg/Payload/PlaydateSDK "$SDK_PATH"
+
+    - name: 'Install Playdate SDK (Windows)'
+      if: steps.cache.outputs.cache-hit != 'true' && runner.os == 'Windows'
+      shell: bash
+      working-directory: ${{ runner.temp }}
+      env:
+        URL: ${{ steps.vars.outputs.url }}
+        SDK_PATH: ${{ steps.vars.outputs.sdk_path }}
+      run: |
+        set -euo pipefail
+        curl -fsSLo PlaydateSDK.exe "$URL"
+        # NSIS installer: /S is silent, /D sets the target and must come last, unquoted
+        ./PlaydateSDK.exe /S /D=$(cygpath -w "$SDK_PATH")
 
     - name: 'Set PLAYDATE_SDK_PATH environment variable'
+      if: inputs.set_env_var == 'true'
       shell: bash
-      if: ${{ inputs.set_env_var == 'true' }}
-      run:  echo "PLAYDATE_SDK_PATH=${{ runner.temp }}/$(ls -t -U ${{ runner.temp }} | grep -m 1 "PlaydateSDK")" >> $GITHUB_ENV
+      run: echo "PLAYDATE_SDK_PATH=${{ steps.vars.outputs.sdk_path }}" >> "$GITHUB_ENV"
 
     - name: 'Update PATH'
+      if: inputs.update_path == 'true'
       shell: bash
-      if: ${{ inputs.update_path == 'true' }}
-      run: echo "${{ runner.temp }}/$(ls -t -U ${{ runner.temp }} | grep -m 1 "PlaydateSDK")/bin" >> $GITHUB_PATH
+      run: echo "${{ steps.vars.outputs.sdk_path }}/bin" >> "$GITHUB_PATH"
+
+    - name: 'Verify installation'
+      if: inputs.quiet != 'true'
+      shell: bash
+      run: echo "pdc $("${{ steps.vars.outputs.sdk_path }}/bin/pdc" --version)"
