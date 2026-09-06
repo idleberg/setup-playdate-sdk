@@ -107,8 +107,11 @@ runs:
       run: |
         set -euo pipefail
         curl -fsSLo PlaydateSDK.exe "$URL"
-        # NSIS installer: /S is silent, /D sets the target and must come last, unquoted
-        ./PlaydateSDK.exe /S /D=$(cygpath -w "$SDK_PATH")
+        # The NSIS installer's manifest is requireAdministrator, so running it (even
+        # with /S) blocks on a UAC prompt the runner can never answer. Unpack it
+        # instead; $PLUGINSDIR only holds installer chrome and the VC++
+        # redistributable, which the runner images already ship.
+        7z x -tnsis -y -bso0 -o"$(cygpath -w "$SDK_PATH")" PlaydateSDK.exe -xr'!$PLUGINSDIR'
 
     - name: 'Set PLAYDATE_SDK_PATH environment variable'
       if: inputs.set_env_var == 'true'
