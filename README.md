@@ -45,7 +45,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install SDK
-        uses: idleberg/setup-playdate-sdk@v3.0.0
+        uses: idleberg/setup-playdate-sdk@v4
 
       - name: Build Project
         run: |
